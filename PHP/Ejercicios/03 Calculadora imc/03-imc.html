@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de salud</title>
+
+  <style>
+    * { font-family: 'JetBrains Mono', monospace; }
+    body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100dvh; margin: 0;}
+    form { display: flex; max-width: 35rem; flex-wrap: wrap; justify-content: center; }
+    label { font-size: 14px; margin-left: 12px; }
+    input { display: block; margin-bottom: 20px; width: 15rem; }
+    #submit { width: 10rem; height: 3rem; cursor: pointer; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Calculadora de salud</h1>
+  <form action="output.php" method="get">
+    <label>Nombre: <input type="text" name="name" id="name" maxlength="16"></label>
+    <label>Edad: <input type="number" name="age" id="age" min="1" max="150"></label>
+    <label>Altura (en cm): <input type="number" name="height" id="height" min="1" max="200"></label>
+    <label>Peso (en kg): <input type="number" name="weight" id="weight" min="1" max="300"></label>
+    <button id="submit">Submit</button>
+  </form>
+</body>
+</html>

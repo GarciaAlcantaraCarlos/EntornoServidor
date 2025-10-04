@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body>
+  <h1>Datos personales</h1>
+  <form action="./output.php" method="POST">
+    <label>Nombre: <input type="text" name="nombre" id="nombre" maxlength="20"></label><br><br>
+    <label>Apellidos: <input type="text" name="apellidos" id="apellidos" maxlength="20"></label><br><br>
+    <label>Edad: <select name="edad" id="edad">
+      <option> -- Selecciona una opción -- </option>
+      <option value="Menos de 20 años">Menos de 20 años</option>
+      <option value="Entre 20 y 39 años">Entre 20 y 39 años</option>
+      <option value="Entre 40 y 59 años">Entre 40 y 59 años</option>
+      <option value="60 años o más">60 años o más</option>
+    </select></label><br><br>
+    <label>Peso: <input type="number" name="peso" id="peso"></label><br><br>
+    <div>
+      Sexo: 
+      <label><input type="radio" name="sexo" id="sexo_H" value="Hombre">Hombre</label>
+      <label><input type="radio" name="sexo" id="sexo_M" value="Mujer">Mujer</label>
+    </div><br>
+    <div>
+      Estado civil:
+      <label><input type="radio" name="civil" id="civil_soltero" value="Soltero">Soltero</label>
+      <label><input type="radio" name="civil" id="civil_casado" value="Casado">Casado</label>
+      <label><input type="radio" name="civil" id="civil_otro" value="Otro">Otro</label>
+    </div><br>
+    <div>
+      Aficiones:
+      <label><input type="checkbox" name="aficiones[]" id="afi_cine" value="Cine">Cine</label>
+      <label><input type="checkbox" name="aficiones[]" id="afi_literatura" value="Literatura">Literatura</label>
+      <label><input type="checkbox" name="aficiones[]" id="afi_tebeos" value="Tebeos">Tebeos</label>
+      <label><input type="checkbox" name="aficiones[]" id="afi_deporte" value="Deporte">Deporte</label>
+      <label><input type="checkbox" name="aficiones[]" id="afi_musica" value="Música">Música</label>
+      <label><input type="checkbox" name="aficiones[]" id="afi_television" value="Televisión">Televisión</label>
+    </div><br>
+    <input type="reset" value="Borrar">
+    <input type="submit" value="Enviar">
+  </form>
+</body>
+</html>

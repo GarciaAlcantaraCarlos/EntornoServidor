@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * { font-family: 'JetBrains Mono';}
+    body, form { display: flex; flex-direction: column; align-items: center; }
+    table { border-collapse: collapse; }
+    table td { text-align: center; border: 1px solid black; padding: 8px 16px; }
+    table td:has(input:checked) {background-color: aquamarine; }
+    input[type=checkbox] { display: none; }
+    input[type=submit] { padding: 8px 16px; margin-top: 1rem; cursor: pointer; }
+    label { width: 100%; display: block; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Selecciona las asignaturas en las que inscribirte</h1>
+  <form action="./06-matriculaHorario.php" method="POST">
+    <table>
+      <tr>
+        <td><label><input type="checkbox" name="servidor">Desarrollo Entorno Servidor</label></td>
+        <td><label><input type="checkbox" name="cliente">Desarrollo Entorno Cliente</label></td>
+      </tr>
+      <tr>
+        <td><label><input type="checkbox" name="ingles">Inglés Profesional</label></td>
+        <td><label><input type="checkbox" name="wordpress">Libre Configuración</label></td>
+      </tr>
+      <tr>
+        <td><label><input type="checkbox" name="interfaz">Diseño Interfaces Web</label></td>
+        <td><label><input type="checkbox" name="despliegue">Despliegue de Aplicaciones Web</label></td>
+      </tr>
+      <tr>
+        <td><label><input type="checkbox" name="ipe">Itinerario para la Empleabilidad</label></td>
+        <td><label><input type="checkbox" name="proyecto">Proyecto interdisciplinar</label></td>
+      </tr>
+    </table>
+    <input type="submit" value="Enviar">
+  </form>
+</body>
+</html>
