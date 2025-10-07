@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <h1>Personaliza tu coche</h1>
+  <form action="output.php" method="post">
+    <h2>1. Modelo<span title="Campo obligatorio">*</span></h2>
+    <table>
+      <tr>
+        <td>
+          <label>
+            <input type="radio" name="modelo" value="compacto" required />
+            Compacto
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="radio" name="modelo" value="sedan" />
+            Sedán
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="radio" name="modelo" value="SUV" />
+            SUV
+          </label>
+        </td>
+      </tr>
+    </table>
+
+    <h2>2. Motor<span title="Campo obligatorio">*</span></h2>
+    <table>
+      <tr>
+        <td>
+          <label>
+            <input type="radio" name="motor" value="gasolina" required />
+            Gasolina 1.6L
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="radio" name="motor" value="diesel" />
+            Diesel 2.0L
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="radio" name="motor" value="electrico" />
+            Eléctrico 75 kWh
+          </label>
+        </td>
+      </tr>
+    </table>
+
+    <h2>3. Color<span title="Campo obligatorio">*</span></h2>
+    <table>
+      <tr>
+        <td>
+          <label>
+            <input type="radio" name="color" value="blanco" required />
+            Blanco Perla
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="radio" name="color" value="negro" />
+            Negro Noche
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="radio" name="color" value="azul" />
+            Azul Eléctrico
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="radio" name="color" value="rojo" />
+            Rojo Pasión
+          </label>
+        </td>
+      </tr>
+    </table>
+
+    <h2>4. Llantas<span title="Campo obligatorio">*</span></h2>
+    <table>
+      <tr>
+        <td>
+          <label>
+            <input type="radio" name="llantas" value="16" required />
+            16" Aleación
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="radio" name="llantas" value="18" />
+            18" Aleación
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="radio" name="llantas" value="20" />
+            20" Deportivo
+          </label>
+        </td>
+      </tr>
+    </table>
+
+    <h2>5. Equipamiento<span title="Campo obligatorio">*</span></h2>
+    <table>
+      <tr>
+        <td>
+          <label>
+            <input type="radio" name="equipamiento" value="basico" required />
+            Básico
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="radio" name="equipamiento" value="confort" />
+            Confort
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="radio" name="equipamiento" value="premium" />
+            Premium
+          </label>
+        </td>
+      </tr>
+    </table>
+
+    <h2>6. Accesorios</h2>
+    <table>
+      <tr>
+        <td>
+          <label>
+            <input type="checkbox" name="accesorios[]" value="techo_panoramico" />
+            Techo panorámico
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="checkbox" name="accesorios[]" value="asientos_cuero" />
+            Asientos de cuero
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="checkbox" name="accesorios[]" value="sonido_premium" />
+            Sistema de sonido premium
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="checkbox" name="accesorios[]" value="camara_360" />
+            Cámara de 360º
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>
+            <input type="checkbox" name="accesorios[]" value="paquete_deportivo" />
+            Paquete deportivo
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="checkbox" name="accesorios[]" value="control_crucero" />
+            Control de crucero adaptativo
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="checkbox" name="accesorios[]" value="sensores_aparcamiento" />
+            Sensores de aparcamiento
+          </label>
+        </td>
+        <td>
+          <label>
+            <input type="checkbox" name="accesorios[]" value="maletero_electrico" />
+            Maletero eléctrico
+          </label>
+        </td>
+      </tr>
+    </table>
+
+    <h2>7. Cantidad<span title="Campo obligatorio">*</span></h2>
+    <label>Unidades <input type="number" name="unidades" min="1" max="5" value="1"></label>
+
+    <h2>8. Código de descuento</h2>
+    <label><input type="text" name="codigoDescuento" placeholder="Código de descuento"></label>
+
+    <input type="submit" value="Comprar">
+  </form>
+</body>
+
+</html>
