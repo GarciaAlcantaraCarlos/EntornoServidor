@@ -15,19 +15,19 @@ class Rating {
     $this->date = date("Y-m-d H:i:s");
   }
 
-  public function getId() { return $ID_rating; }
-  public function setId($id) { $this->$ID_rating = $id; }
+  public function getId() { return $this->ID_rating; }
+  public function setId($id) { $this->ID_rating = $id; }
 
-  public function getUserId() { return $ID_user; }
-  public function setUserId($id) { $this->$ID_user = $id; }
+  public function getUserId() { return $this->ID_user; }
+  public function setUserId($id) { $this->ID_user = $id; }
 
-  public function getMovieId() { return $ID_movie; }
-  public function setMovieId($id) { $this->$ID_movie = $id; }
+  public function getMovieId() { return $this->ID_movie; }
+  public function setMovieId($id) { $this->ID_movie = $id; }
 
-  public function getValue() { return $value; }
-  public function setValue($value) { $this->$value = $value; }
+  public function getValue() { return $this->value; }
+  public function setValue($value) { $this->value = $value; }
 
-  public function getDate() { return $date; }
-  public function setDate($date) { $this->$date = $date; }
+  public function getDate() { return $this->date; }
+  public function setDate($date) { $this->date = $date; }
 
 }

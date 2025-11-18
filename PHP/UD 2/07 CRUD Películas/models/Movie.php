@@ -20,28 +20,28 @@ class Movie {
     $this->description = $description;
   }
 
-  public function getId() { return $ID_movie; }
-  public function setId($id) { $this->$ID_movie = $id; }
+  public function getId() { return $this->ID_movie; }
+  public function setId($id) { $this->ID_movie = $id; }
 
-  public function getTitle() { return $title; }
-  public function setTitle($title) { $this->$title = $title; }
+  public function getTitle() { return $this->title; }
+  public function setTitle($title) { $this->title = $title; }
 
-  public function getMovieGradient() { return $movieGradient; }
-  public function setMovieGradient($gradient) { $this->$movieGradient = $gradient; }
+  public function getMovieGradient() { return $this->movieGradient; }
+  public function setMovieGradient($gradient) { $this->movieGradient = $gradient; }
 
-  public function getReleaseYear() { return $releaseYear; }
-  public function setReleaseYear($year) { $this->$releaseYear = $year; }
+  public function getReleaseYear() { return $this->releaseYear; }
+  public function setReleaseYear($year) { $this->releaseYear = $year; }
 
-  public function getDirector() { return $director; }
-  public function setDirector($director) { $this->$director = $director; }
+  public function getDirector() { return $this->director; }
+  public function setDirector($director) { $this->director = $director; }
 
-  public function getGenre() { return $genre; }
-  public function setGenre($genre) { $this->$genre = $genre; }
+  public function getGenre() { return $this->genre; }
+  public function setGenre($genre) { $this->genre = $genre; }
 
-  public function getDuration() { return $duration; }
-  public function setDuration($duration) { $this->$duration = $duration; }
+  public function getDuration() { return $this->duration; }
+  public function setDuration($duration) { $this->duration = $duration; }
 
-  public function getDescription() { return $description; }
-  public function setDescription($description) { $this->$description = $description; }
+  public function getDescription() { return $this->description; }
+  public function setDescription($description) { $this->description = $description; }
 
 }
