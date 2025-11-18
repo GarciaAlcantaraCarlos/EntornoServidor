@@ -1,0 +1,54 @@
+-- Users Table
+CREATE TABLE users (
+    ID_user INT PRIMARY KEY AUTO_INCREMENT,
+    isAdmin BOOLEAN DEFAULT FALSE,
+    displayName VARCHAR(100) NOT NULL,
+    userName VARCHAR(50) UNIQUE NOT NULL,
+    userColor VARCHAR(50),
+    email VARCHAR(100) UNIQUE NOT NULL,
+    salt VARCHAR(255) NOT NULL,
+    pwdHash VARCHAR(255) NOT NULL
+);
+
+-- Movies Table
+CREATE TABLE movies (
+    ID_movie INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    movieGradient VARCHAR(18),
+    releaseYear INT,
+    director VARCHAR(100),
+    genre VARCHAR(100),
+    duration INT,
+    description TEXT
+);
+
+-- Ratings Table
+CREATE TABLE ratings (
+    ID_rating INT PRIMARY KEY AUTO_INCREMENT,
+    ID_user INT NOT NULL,
+    ID_movie INT NOT NULL,
+    value DECIMAL(3,1) NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (ID_user) REFERENCES users(ID_user) ON DELETE CASCADE,
+    FOREIGN KEY (ID_movie) REFERENCES movies(ID_movie) ON DELETE CASCADE,
+    UNIQUE KEY unique_user_movie_rating (ID_user, ID_movie)
+);
+
+-- Comments Table
+CREATE TABLE comments (
+    ID_comment INT PRIMARY KEY AUTO_INCREMENT,
+    ID_user INT NOT NULL,
+    ID_movie INT NOT NULL,
+    commentBody TEXT NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (ID_user) REFERENCES users(ID_user) ON DELETE CASCADE,
+    FOREIGN KEY (ID_movie) REFERENCES movies(ID_movie) ON DELETE CASCADE
+);
+
+-- Indexes for better query performance
+CREATE INDEX idx_ratings_movie ON ratings(ID_movie);
+CREATE INDEX idx_ratings_user ON ratings(ID_user);
+CREATE INDEX idx_comments_movie ON comments(ID_movie);
+CREATE INDEX idx_comments_user ON comments(ID_user);
+CREATE INDEX idx_movies_title ON movies(title);
+CREATE INDEX idx_movies_genre ON movies(genre);
