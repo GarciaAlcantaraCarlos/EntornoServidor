@@ -1,8 +1,8 @@
 <?php
 
-class Conector {
+class Connector {
 
-    public function conectar(){
+    public function connect(){
         try {
             $conexion = new PDO("mysql:host=localhost;dbname=DB_PELICULAS", "root", "");
             $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

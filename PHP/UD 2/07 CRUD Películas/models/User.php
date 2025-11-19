@@ -11,12 +11,13 @@ class User {
   private $salt;
   private $pwdHash;
 
-  public function __construct($isAdmin, $userName, $email, $pwd) {
+  public function __construct($isAdmin, $userName, $email) {
+    $this->ID_user = null;
     $this->isAdmin = $isAdmin;
     $this->userName = $userName;
     $this->email = $email;
-    $this->pwdHash = $pwd;
-    // To do, perform salt and hash
+    $this->userColor = "#808080";
+    $this->displayName = $userName;
   }
 
   public function getId() { return $this->ID_user; } 
@@ -43,6 +44,6 @@ class User {
   public function getPwdHash() { return $this->pwdHash; }
   public function setPwdHash($hash) { $this->pwdHash = $hash; }
   
-  // TODO: tostring method
+  // TODO: tostring method?
   
 }
