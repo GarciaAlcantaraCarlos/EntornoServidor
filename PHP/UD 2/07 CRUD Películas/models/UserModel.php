@@ -124,10 +124,11 @@ class UserModel {
 				$users[] = $this->rowToUser( $row );
 			}
 
-			return $users;
 		} catch (PDOException $exception) {
 			$user = null;
 		}
+		
+		return $users;
 	}
 
 	public function insertUser( $user ) {
@@ -202,19 +203,7 @@ class UserModel {
     return $query->execute();
 
   }
-
-  public function removeById ( $id ) {
-    $connection = $this->connector->connect();
-
-    $query = $connection->prepare( "UPDATE users SET pwdHash = :pwdHash WHERE ID_user = :id" );
-
-    $query->bindParam( ':id', $id );
-
-    return $query->execute();
-  }
 }
-
-
 // $user = new User(false, 'eskaigarcia', 'yosoyeskai@gmial.com');
 // $user->setSalt('abcdef');
 // $user->setPwdHash('abcdef');
