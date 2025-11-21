@@ -1,7 +1,7 @@
 <?php
 
-require_once './Connector.php';
-require_once './User.php';
+require_once __DIR__ . '/Connector.php';
+require_once __DIR__ . '/User.php';
 
 class UserModel {
 
@@ -34,9 +34,9 @@ class UserModel {
 			$connection = $this->connector->connect();
 
 			$query = $connection->prepare(
-				"SELECT ID_user, isAdmin, displayName, userName, userColor, email FROM users WHERE id = :id"
+				"SELECT ID_user, isAdmin, displayName, userName, userColor, email FROM users WHERE ID_user = :id"
 			);
-			$query->bindParam( ':id', $id );
+			$query->bindValue( ':id', $id );
 			$query->execute();
 
 			$queryResult = $query->fetch();
@@ -60,7 +60,7 @@ class UserModel {
 			$query = $connection->prepare(
 				"SELECT ID_user, isAdmin, displayName, userName, userColor, email FROM users WHERE userName = :userName"
 			);
-			$query->bindParam( ':userName', $userName );
+			$query->bindValue( ':userName', $userName );
 			$query->execute();
 
 			$queryResult = $query->fetch();
@@ -85,7 +85,7 @@ class UserModel {
 			$query = $connection->prepare(
 				"SELECT ID_user, userName, salt, pwdHash FROM users WHERE userName = :userName"
 			);
-			$query->bindParam( ':userName', $userName );
+			$query->bindValue( ':userName', $userName );
 			$query->execute();
 
 			$row = $query->fetch();
@@ -141,37 +141,23 @@ class UserModel {
         VALUES (:isAdmin, :displayName, :userName, :userColor, :email, :salt, :pwdHash)"
       );
 
-      $query->bindParam( ':isAdmin', $user->getIsAdmin() );
-      $query->bindParam( ':displayName', $user->getDisplayName() );
-      $query->bindParam( ':userName', $user->getUserName() );
-      $query->bindParam( ':userColor', $user->getUserColor() );
-      $query->bindParam( ':email', $user->getEmail() );
-      $query->bindParam( ':salt', $user->getSalt() );
-      $query->bindParam( ':pwdHash', $user->getPwdHash() );
+      $query->bindValue( ':isAdmin', $user->getIsAdmin() );
+      $query->bindValue( ':displayName', $user->getDisplayName() );
+      $query->bindValue( ':userName', $user->getUserName() );
+      $query->bindValue( ':userColor', $user->getUserColor() );
+      $query->bindValue( ':email', $user->getEmail() );
+      $query->bindValue( ':salt', $user->getSalt() );
+      $query->bindValue( ':pwdHash', $user->getPwdHash() );
 
       $query->execute();
-      $id = $this->getLastID();
 
-      $user->setId($id);
+      $user->setId($connection->lastInsertId());
     } catch (PDOException $exception) {
       $user = null;
     }
 
     return $user;
 	}
-
-  public function getLastId() {
-
-    $connection = $this->connector->connect();
-    $query = $connection->prepare( "SELECT MAX(ID_user) FROM users" );
-    $query->execute();
-
-    $queryResult = $query->fetch();
-
-    $id = $queryResult[0];
-
-    return $id; 
-  }
 
   public function updateUser ( $user ) {
     $connection = $this->connector->connect();
@@ -182,12 +168,12 @@ class UserModel {
       WHERE ID_user = :id"
     );
 
-    $query->bindParam( ':isAdmin', $user->getIsAdmin() );
-    $query->bindParam( ':displayName', $user->getDisplayName() );
-    $query->bindParam( ':userName', $user->getUserName() );
-    $query->bindParam( ':userColor', $user->getUserColor() );
-    $query->bindParam( ':email', $user->getEmail() );
-    $query->bindParam( ':id', $user->getId() );
+    $query->bindValue( ':isAdmin', $user->getIsAdmin() );
+    $query->bindValue( ':displayName', $user->getDisplayName() );
+    $query->bindValue( ':userName', $user->getUserName() );
+    $query->bindValue( ':userColor', $user->getUserColor() );
+    $query->bindValue( ':email', $user->getEmail() );
+    $query->bindValue( ':id', $user->getId() );
 
     return $query->execute();
   }
@@ -197,8 +183,8 @@ class UserModel {
 
     $query = $connection->prepare( "UPDATE users SET pwdHash = :pwdHash WHERE ID_user = :id" );
 
-    $query->bindParam( ':pwdHash', $user->getPwdHash() );
-    $query->bindParam( ':id', $user->getId() );
+    $query->bindValue( ':pwdHash', $user->getPwdHash() );
+    $query->bindValue( ':id', $user->getId() );
 
     return $query->execute();
 

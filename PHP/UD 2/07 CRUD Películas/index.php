@@ -12,16 +12,30 @@
   <link rel="manifest" href="./views/images/site.webmanifest" />
 
   <link rel="stylesheet" href="./views/styles/baseline.css">
+  <link rel="stylesheet" href="./views/styles/onboarding.css">
+
+  <style>
+    html{ 
+      height: 100dvh;
+      background-image: url('./views/images/index-background-mix.webp');
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
 </head>
 <body>
   <header>
     <nav>
       <a href="#"><img src="./views/images/logo.png" alt="Website logo"></a>
-      <a href="./views/movies/">Movies</a>
     </nav>
-    <button>
-      Iniciar sesión
-    </button>
+    <a href="./views/auth/login.php"><button>
+      Login / Sign up
+    </button></a>
   </header>
+  <div id="onboarding">
+    <div id="gradient"></div>
+    <h1>Welcome to Watchlist</h1>
+    <p>Watchlist is a private service, in order to access the movie catalog you must <a href="./views/auth/login.php">log in to your account</a> or <a href="./views/auth/register.php">sign up for a new one</a></p>
+  </div>
 </body>
 </html>

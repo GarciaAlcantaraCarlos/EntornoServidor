@@ -1,7 +1,7 @@
 <?php
 
-  require_once '../models/UserModel.php';
-  require_once '../services/AuthService.php';
+  require_once __DIR__ . '/../models/UserModel.php';
+  require_once __DIR__ . '/../services/AuthService.php';
 
   class AccountController {
 
@@ -11,11 +11,8 @@
       $this->model = new UserModel (); 
     }
 
-    public function login() {
-      $username = $_POST['userName'];
-      $password = $_POST['password'];
-
-      $authData = $this->model->getUserForAuth($username);
+    public function login($userName, $password) {
+      $authData = $this->model->getUserForAuth($userName);
 
       if (!empty($authData)) {
         $success = AuthService::verifyPassword(
@@ -28,17 +25,11 @@
         $_SESSION['user_name'] = $user->getDisplayName();
         $_SESSION['user_color'] = $user->getUserColor();
 
-        header('Location: /views/movies/');
-      } else {
-        echo "Login failed";
+        return true;
       }
     }
 
-    public function register() {
-      $userName = $_POST['userName'];
-      $password = $_POST['password'];
-      $email = $_POST['email'];
-      $isAdmin = $_POST['isAdmin'];
+    public function register($isAdmin, $userName, $password, $email) {
       $salt = AuthService::createSalt();
       $pwdHash = AuthService::hashPassword($password, $salt);
 
@@ -46,9 +37,8 @@
       $user->setSalt($salt);
       $user->setPwdHash($pwdHash);
 
-      if ( $this->model->insertUser( $user ) ) {
-        $id = $this->model->getLastId();
-        $user = $this->model->getByID($id);
+      $user = $this->model->insertUser( $user );
+      if ( $user ) {
         $_SESSION['user_id'] = $user->getId();
         $_SESSION['user_name'] = $user->getDisplayName();
         $_SESSION['user_color'] = $user->getUserColor();

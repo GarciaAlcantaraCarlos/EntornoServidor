@@ -1,7 +1,7 @@
 <?php
 
-require_once './Connector.php';
-require_once './Movie.php';
+require_once __DIR__ . '/Connector.php';
+require_once __DIR__ . '/Movie.php';
 
 class MovieModel {
 
@@ -35,9 +35,9 @@ class MovieModel {
 			$connection = $this->connector->connect();
 
 			$query = $connection->prepare(
-				"SELECT * FROM movies WHERE id = :id"
+				"SELECT * FROM movies WHERE ID_movie = :id"
 			);
-			$query->bindParam( ':id', $id );
+			$query->bindValue( ':id', $id );
 			$query->execute();
 
 			$queryResult = $query->fetch();
@@ -88,37 +88,23 @@ class MovieModel {
         VALUES (:title, :movieGradient, :releaseYear, :director, :genre, :duration, :description)"
       );
 
-      $query->bindParam( ':title', $movie->getTitle() );
-      $query->bindParam( ':movieGradient', $movie->getMovieGradient() );
-      $query->bindParam( ':releaseYear', $movie->getReleaseYear() );
-      $query->bindParam( ':director', $movie->getDirector() );
-      $query->bindParam( ':genre', $movie->getGenre() );
-      $query->bindParam( ':duration', $movie->getDuration() );
-      $query->bindParam( ':description', $movie->getDescription() );
+      $query->bindValue( ':title', $movie->getTitle() );
+      $query->bindValue( ':movieGradient', $movie->getMovieGradient() );
+      $query->bindValue( ':releaseYear', $movie->getReleaseYear() );
+      $query->bindValue( ':director', $movie->getDirector() );
+      $query->bindValue( ':genre', $movie->getGenre() );
+      $query->bindValue( ':duration', $movie->getDuration() );
+      $query->bindValue( ':description', $movie->getDescription() );
 
       $query->execute();
-      $id = $this->getLastID();
 
-      $movie->setId($id);
+      $movie->setId($connection->lastInsertId());
     } catch (PDOException $exception) {
       $movie = null;
     }
 
     return $movie;
 	}
-
-  public function getLastId() {
-
-    $connection = $this->connector->connect();
-    $query = $connection->prepare( "SELECT MAX(ID_user) FROM movies" );
-    $query->execute();
-
-    $queryResult = $query->fetch();
-
-    $id = $queryResult[0];
-
-    return $id; 
-  }
 
   public function updateMovie ( $movie ) {
     $connection = $this->connector->connect();
@@ -129,14 +115,14 @@ class MovieModel {
       WHERE ID_movie = :id"
     );
 
-    $query->bindParam( ':title', $movie->getTitle() );
-    $query->bindParam( ':movieGradient', $movie->getMovieGradient() );
-    $query->bindParam( ':releaseYear', $movie->getReleaseYear() );
-    $query->bindParam( ':director', $movie->getDirector() );
-    $query->bindParam( ':genre', $movie->getGenre() );
-    $query->bindParam( ':duration', $movie->getDuration() );
-    $query->bindParam( ':description', $movie->getDescription() );
-    $query->bindParam( ':id', $movie->getId() );
+    $query->bindValue( ':title', $movie->getTitle() );
+    $query->bindValue( ':movieGradient', $movie->getMovieGradient() );
+    $query->bindValue( ':releaseYear', $movie->getReleaseYear() );
+    $query->bindValue( ':director', $movie->getDirector() );
+    $query->bindValue( ':genre', $movie->getGenre() );
+    $query->bindValue( ':duration', $movie->getDuration() );
+    $query->bindValue( ':description', $movie->getDescription() );
+    $query->bindValue( ':id', $movie->getId() );
 
     return $query->execute();
   }
@@ -147,7 +133,7 @@ class MovieModel {
 
     $query = $connection->prepare( "DELETE FROM movies WHERE ID_movie = :id" );
 
-    $query->bindParam( ':id', $id );
+    $query->bindValue( ':id', $id );
 
     return $query->execute();
   }

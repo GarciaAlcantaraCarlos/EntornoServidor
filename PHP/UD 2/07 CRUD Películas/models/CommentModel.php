@@ -1,7 +1,7 @@
 <?php
 
-require_once './Connector.php';
-require_once './Comment.php';
+require_once __DIR__ . '/Connector.php';
+require_once __DIR__ . '/Comment.php';
 
 class MovieModel {
 
@@ -32,9 +32,9 @@ class MovieModel {
 			$connection = $this->connector->connect();
 
 			$query = $connection->prepare(
-				"SELECT * FROM comments WHERE id = :id"
+				"SELECT * FROM comments WHERE ID_comment = :id"
 			);
-			$query->bindParam( ':id', $id );
+			$query->bindValue( ':id', $id );
 			$query->execute();
 
 			$queryResult = $query->fetch();
@@ -85,15 +85,14 @@ class MovieModel {
         VALUES (:ID_user, :ID_movie, :commentBody, :date)"
       );
 
-      $query->bindParam( ':ID_user', $comment->getUserId() );
-      $query->bindParam( ':ID_movie', $comment->getMovieId() );
-      $query->bindParam( ':commentBody', $comment->getCommentBody() );
-      $query->bindParam( ':date', $comment->getDate() );
+      $query->bindValue( ':ID_user', $comment->getUserId() );
+      $query->bindValue( ':ID_movie', $comment->getMovieId() );
+      $query->bindValue( ':commentBody', $comment->getCommentBody() );
+      $query->bindValue( ':date', $comment->getDate() );
 
       $query->execute();
-      $id = $this->getLastID();
 
-      $comment->setId($id);
+			$comment->setId($connection->lastInsertId());
     } catch (PDOException $exception) {
       $comment = null;
     }
@@ -123,11 +122,11 @@ class MovieModel {
       WHERE ID_comment = :id"
     );
 
-    $query->bindParam( ':ID_user', $comment->getUserId() );
-    $query->bindParam( ':ID_movie', $comment->getMovieId() );
-    $query->bindParam( ':commentBody', $comment->getCommentBody() );
-    $query->bindParam( ':date', $comment->getDate() );
-    $query->bindParam( ':id', $comment->getId() );
+    $query->bindValue( ':ID_user', $comment->getUserId() );
+    $query->bindValue( ':ID_movie', $comment->getMovieId() );
+    $query->bindValue( ':commentBody', $comment->getCommentBody() );
+    $query->bindValue( ':date', $comment->getDate() );
+    $query->bindValue( ':id', $comment->getId() );
 
     return $query->execute();
   }
@@ -138,7 +137,7 @@ class MovieModel {
 
     $query = $connection->prepare( "DELETE FROM comments WHERE ID_comment = :id" );
 
-    $query->bindParam( ':id', $id );
+    $query->bindValue( ':id', $id );
 
     return $query->execute();
   }
