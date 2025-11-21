@@ -4,6 +4,7 @@
   --color-primary-darkest: #0a0e1a;
   --color-primary-muted: #21387f;
   --color-primary: #3161f1;
+  --color-primary-overlay: #3161f172;
   --color-primary-focus: #5d82f2;
   --color-white: #f4f6fa;
   --color-accent: #dab541;
@@ -46,6 +47,7 @@ header{
         margin: 1rem;
         padding: 3px;
         font-size: 1.15rem;
+        
         &::after{
           content: '';
           width: 0%;
@@ -64,18 +66,72 @@ header{
       }
     }
   }
+}
 
-  button {
-    background-color: var(--color-accent);
-    padding: 8px 18px;
-    border: none;
-    font-family: inherit;
-    font-weight: 500;
-    font-size: 1rem;
-    border-radius: 40px;
-    cursor: pointer;
-    &:hover{
-      background-color: var(--color-accent-light);
-    }
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button.cta {
+  background-color: var(--color-accent);
+  padding: 8px 18px;
+  border: none;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 40px;
+  cursor: pointer;
+  &:hover{
+    background-color: var(--color-accent-light);
+  }
+}
+
+button.account-controls {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 8px;
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+
+  &:hover{
+    background-color: var(--color-primary-overlay);
+  }
+
+  span.color{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+  }
+
+  span.admin{
+    border: 1px solid red;
+    background: darkred;
+    color: lightcoral;
+    font-size: 0.75rem;
+    padding: 4px 6px;
+    border-radius: 16px;
+  }
+}
+
+button.submit, input[type=submit]{
+  border: none;
+  background-color: var(--color-primary);
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0.5rem 1.75rem;
+  font-size: 1rem;
+  border-radius: 80px;
+  margin-top: 1rem;
+  font-weight: 500;
+  color: white;
+
+  &:hover{
+    background-color: var(--color-primary-focus);
   }
 }

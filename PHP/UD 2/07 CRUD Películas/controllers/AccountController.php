@@ -12,6 +12,8 @@
     }
 
     public function login($userName, $password) {
+      
+      $success = false;
       $authData = $this->model->getUserForAuth($userName);
 
       if (!empty($authData)) {
@@ -22,7 +24,8 @@
       if($success) {
         $user = $this->model->getByID($authData['id']);
         $_SESSION['user_id'] = $user->getId();
-        $_SESSION['user_name'] = $user->getDisplayName();
+        $_SESSION['user_isAdmin'] = $user->getIsAdmin();
+        $_SESSION['user_displayName'] = $user->getDisplayName();
         $_SESSION['user_color'] = $user->getUserColor();
 
         return true;
@@ -30,6 +33,7 @@
     }
 
     public function register($isAdmin, $userName, $password, $email) {
+
       $salt = AuthService::createSalt();
       $pwdHash = AuthService::hashPassword($password, $salt);
 
@@ -40,7 +44,8 @@
       $user = $this->model->insertUser( $user );
       if ( $user ) {
         $_SESSION['user_id'] = $user->getId();
-        $_SESSION['user_name'] = $user->getDisplayName();
+        $_SESSION['user_isAdmin'] = $user->getIsAdmin();
+        $_SESSION['user_displayName'] = $user->getDisplayName();
         $_SESSION['user_color'] = $user->getUserColor();
 
         header('Location: /views/account/profile.php');

@@ -16,7 +16,7 @@ class User {
     $this->isAdmin = $isAdmin;
     $this->userName = $userName;
     $this->email = $email;
-    $this->userColor = "#808080";
+    $this->userColor = "dab541";
     $this->displayName = $userName;
   }
 

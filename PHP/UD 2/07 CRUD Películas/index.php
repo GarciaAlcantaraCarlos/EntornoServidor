@@ -1,3 +1,11 @@
+<?php 
+  session_start();
+
+  if(isset($_SESSION['user_id'])){
+    header("location: ./views/movies/");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,9 +36,9 @@
     <nav>
       <a href="#"><img src="./views/images/logo.png" alt="Website logo"></a>
     </nav>
-    <a href="./views/auth/login.php"><button>
-      Login / Sign up
-    </button></a>
+    <a href="./views/auth/login.php">
+      <button class="cta">Log in</button>
+    </a>
   </header>
   <div id="onboarding">
     <div id="gradient"></div>
