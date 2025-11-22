@@ -1,5 +1,11 @@
 <?php
   require_once '../../controllers/AccountController.php';
+  session_start();
+
+  if (isset($_SESSION['user_id'])) {
+    header('Location: ../movies/index.php');
+    exit;
+  }
 
   if (isset($_POST['userName'])) {
     $aCtrl = new AccountController();
@@ -8,6 +14,7 @@
 
     if ($aCtrl->login($userName, $password)) {
       header('Location: ../movies/');
+      exit;
     }
   }
 ?>

@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <header>
     <nav>
       <a href="../../index.php"><img src="../images/logo.png" alt="Website logo"></a>
@@ -19,14 +17,12 @@
         $admin = $_SESSION['user_isAdmin'];
 
         if ($admin) {
-          echo "<button class='account-controls'>$name<span class='admin'>Admin priviledges</span></button>";
+          echo "<button class='account-controls'>$name<span class='admin'>Admin priviledges</span><span class='dropdown'><a href='../account/profile.php'>View profile</a><a href='../auth/logout.php'>Log out</a></span></button>";
         } else {
-          echo "<button class='account-controls'>$name<span style='background-color: #$color;' class='color'></span></button>";
+          echo "<button class='account-controls'>$name<span style='background-color: #$color;' class='color'></span><span class='dropdown'><a href='../account/profile.php'>View profile</a><a href='../auth/logout.php'>Log out</a></span></button>";
         }
       } else {
         echo "<a href='../auth/login.php'><button class='cta'>Log in</button></a>";
       }
-
-      // Añadir cerrar sesión
     ?>
   </header>

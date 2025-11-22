@@ -1,8 +1,5 @@
 <?php
-
-session_start();
-
-if (!isset($_SESSION['user_displayName'])) {
-  $location = __DIR__ . '../../index.php';
-  header("location: $location");
+if (!isset($_SESSION['user_id'])) {
+  header("location: ../../index.php");
+  exit;
 }

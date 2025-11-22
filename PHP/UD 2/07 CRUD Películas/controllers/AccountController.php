@@ -22,6 +22,8 @@
       }
 
       if($success) {
+        session_start();
+
         $user = $this->model->getByID($authData['id']);
         $_SESSION['user_id'] = $user->getId();
         $_SESSION['user_isAdmin'] = $user->getIsAdmin();
@@ -43,6 +45,8 @@
 
       $user = $this->model->insertUser( $user );
       if ( $user ) {
+        session_start();
+        
         $_SESSION['user_id'] = $user->getId();
         $_SESSION['user_isAdmin'] = $user->getIsAdmin();
         $_SESSION['user_displayName'] = $user->getDisplayName();
