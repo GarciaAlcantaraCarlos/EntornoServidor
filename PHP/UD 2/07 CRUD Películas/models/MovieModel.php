@@ -63,7 +63,7 @@ class MovieModel {
 			);
 			$query->execute();
 
-			$queryResult = $query->fetch();
+			$queryResult = $query->fetchAll();
 
 			$movies = [];
 

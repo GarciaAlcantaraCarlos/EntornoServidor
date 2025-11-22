@@ -116,7 +116,7 @@ class UserModel {
 			);
 			$query->execute();
 
-			$queryResult = $query->fetch();
+			$queryResult = $query->fetchAll();
 
 			$users = [];
 

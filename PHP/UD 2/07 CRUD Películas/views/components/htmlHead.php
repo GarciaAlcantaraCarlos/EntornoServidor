@@ -16,4 +16,5 @@
   <!-- Styles -->
   <link rel="stylesheet" href="../styles/baseline.css">
   <link rel="stylesheet" href="../styles/onboarding.css">
+  <link rel="stylesheet" href="../styles/components.css">
 </head>

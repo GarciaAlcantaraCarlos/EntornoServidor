@@ -20,6 +20,7 @@
   <link rel="manifest" href="./views/images/site.webmanifest" />
 
   <link rel="stylesheet" href="./views/styles/baseline.css">
+  <link rel="stylesheet" href="./views/styles/components.css">
   <link rel="stylesheet" href="./views/styles/onboarding.css">
 
   <style>

@@ -6,7 +6,7 @@
             echo "<a href='#'>Movies</a>";
           }
           if (($_SESSION['user_isAdmin'] ?? false) == true) {
-            echo "<a href='#'>Dashboard</a>";
+            echo "<a href='../movies/create.php'>Create movie</a>";
           }
         ?>
     </nav>
