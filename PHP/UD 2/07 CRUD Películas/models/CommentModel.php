@@ -3,7 +3,7 @@
 require_once __DIR__ . '/Connector.php';
 require_once __DIR__ . '/Comment.php';
 
-class MovieModel {
+class CommentModel {
 
 	private $connector;
 

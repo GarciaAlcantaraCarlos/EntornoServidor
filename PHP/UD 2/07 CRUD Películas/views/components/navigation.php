@@ -3,7 +3,7 @@
       <a href="../../index.php"><img src="../images/logo.png" alt="Website logo"></a>
         <?php
           if (isset($_SESSION['user_id'])) {
-            echo "<a href='#'>Movies</a>";
+            echo "<a href='../movies/index.php'>Movies</a>";
           }
           if (($_SESSION['user_isAdmin'] ?? false) == true) {
             echo "<a href='../movies/create.php'>Create movie</a>";

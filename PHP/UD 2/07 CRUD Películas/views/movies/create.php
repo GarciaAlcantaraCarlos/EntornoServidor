@@ -53,7 +53,7 @@
           <p id="title-preview"></p>
         </div>
       </div>
-      <input type="submit" value="Add film to database">
+      <input type="submit" value="Add movie to database">
     </form>
   </main> 
 </body>

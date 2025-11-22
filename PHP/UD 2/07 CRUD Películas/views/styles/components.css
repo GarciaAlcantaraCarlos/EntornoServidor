@@ -184,3 +184,57 @@ form{
     min-height: 1.45rem;
   }
 }
+
+/*  ===============  LIST VIEW  ===============  */
+.movie-list{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  align-items: start;
+
+  .card{
+    padding: 12px;
+    border-radius: 8px;
+    min-height: 6rem;
+    background-color: var(--color-primary-muted);
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: "color ." "color .";
+    column-gap: 12px;
+
+    &:hover, &:focus, &:focus-within {
+      box-shadow: 0 0 0 1px white;
+      background-color: var(--color-primary-focus-soft);
+    }
+
+    .poster{
+      grid-area: color;
+      border-radius: 4px;
+    }
+
+    h3, p{ margin: 0; align-self: center; }
+    h3 { font-size: 1.5rem; }
+    p { opacity: 0.8; font-size: 0.9rem; }
+  }
+}
+
+/*  ===============  PAGES  ===============  */
+main.movie-details{
+  .container {
+    display: grid;
+    grid-template-columns: 16rem 1fr;
+    column-gap: 1.5rem;
+  }
+
+  .container-left{
+    .poster{
+      margin-inline: auto;
+      width: 15rem;
+      height: 22rem;
+      background-color: orange;
+      border-radius: 12px;
+    }
+    text-align: center;
+  }
+}
