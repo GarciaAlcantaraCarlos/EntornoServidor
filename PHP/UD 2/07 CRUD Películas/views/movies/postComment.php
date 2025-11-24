@@ -14,7 +14,7 @@
 
     $conn = new CommentModel();
     if ($conn->insertComment($comment)) {
-      header ("location: ./detail.php?id=$mvoie_id");
+      header ("location: ./detail.php?id=$movie_id");
       exit;
     } else {
       echo "Unknown error.";

@@ -279,6 +279,13 @@ div[popover] {
   }
 }
 
+.comment {
+  margin-bottom: 2rem;
+  border-left: 3px solid white;
+  padding-left: 8px;
+  a:hover{ text-decoration: underline; }
+}
+
 /*  ===============  PAGES  ===============  */
 main.movie-details {
   .container {

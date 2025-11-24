@@ -62,12 +62,21 @@
         if ($comments != null) {
           echo "<section class='comments'> <hr> <h2>Comments</h2>";
           foreach ($comments as $comment) {
+            $comment_id = $comment->getId();
             $user_id = $comment->getUserId();
             $user = $comment->getUserDisplayName();
             $commentBody = $comment->getCommentBody();
 
+            $action = '';
+            if ($_SESSION['user_isAdmin']){
+              $action = "<a href='./deleteComment.php?id=$comment_id&movie=$id'><button>Eliminar comentario</button></a>";
+            }
+
             echo "<div class='comment'>
-              <a href='../account/profile?id=$user_id'><strong>$user</strong></a>
+              <div class='flex-clearfix'>
+                <a href='../account/profile.php?id=$user_id'><strong>$user</strong></a>
+                $action
+              </div>
               <p>$commentBody</p>
               </div>";
           }

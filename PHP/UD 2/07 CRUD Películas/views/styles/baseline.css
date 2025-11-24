@@ -31,3 +31,8 @@ main {
   max-width: 1024px;
   margin-inline: auto;
 }
+
+.flex-clearfix {
+  display: flex;
+  justify-content: space-between;
+}

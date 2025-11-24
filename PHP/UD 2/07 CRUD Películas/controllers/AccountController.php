@@ -14,7 +14,8 @@
     public function login($userName, $password) {
       
       $success = false;
-      $authData = $this->model->getUserForAuth($userName);
+      $id = $this->model->getByUserName($userName)->getId();
+      $authData = $this->model->getUserForAuth($id);
 
       if (!empty($authData)) {
         $success = AuthService::verifyPassword(

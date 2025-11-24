@@ -8,7 +8,7 @@
 <body>
   <?php require '../components/navigation.php'; ?>
   <main>
-    <h1>Editar perfil</h1>
+    <h1>Cambiar contraseña</h1>
     <?php 
       if (isset($_POST['current'])) {
         $id = $_SESSION['user_id'];
