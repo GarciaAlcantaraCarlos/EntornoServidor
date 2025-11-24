@@ -29,7 +29,7 @@ class UserModel {
 		return $user;
 	}
 
-	public function getByID( $id ) {
+	public function getById( $id ) {
 		try {
 			$connection = $this->connector->connect();
 
@@ -77,15 +77,15 @@ class UserModel {
 		return $user;
 	}
 
-	public function getUserForAuth( $userName ) {
+	public function getUserForAuth( $id ) {
 		try {
 			$connection = $this->connector->connect();
 
 			// Notice we're ONLY selecting the fields needed for authentication
 			$query = $connection->prepare(
-				"SELECT ID_user, userName, salt, pwdHash FROM users WHERE userName = :userName"
+				"SELECT ID_user, salt, pwdHash FROM users WHERE ID_user = :id"
 			);
-			$query->bindValue( ':userName', $userName );
+			$query->bindValue( ':id', $id );
 			$query->execute();
 
 			$row = $query->fetch();
@@ -96,7 +96,6 @@ class UserModel {
 
 			return [
 				'id' => $row['ID_user'],
-				'userName' => $row['userName'],
 				'salt' => $row['salt'],
 				'pwdHash' => $row['pwdHash']
 			];
@@ -164,7 +163,7 @@ class UserModel {
 
     $query = $connection->prepare(
       "UPDATE users 
-      SET isAdmin = :isAdmin, displayName = :displayName, userName = :userName, userColor = :userColor, email = :email,
+      SET isAdmin = :isAdmin, displayName = :displayName, userName = :userName, userColor = :userColor, email = :email
       WHERE ID_user = :id"
     );
 
@@ -178,22 +177,15 @@ class UserModel {
     return $query->execute();
   }
 
-  public function updatePwdHash ( $user ) {
+  public function updatePwdHash ( $id, $hash ) {
     $connection = $this->connector->connect();
 
     $query = $connection->prepare( "UPDATE users SET pwdHash = :pwdHash WHERE ID_user = :id" );
 
-    $query->bindValue( ':pwdHash', $user->getPwdHash() );
-    $query->bindValue( ':id', $user->getId() );
+    $query->bindValue( ':pwdHash', $hash );
+    $query->bindValue( ':id', $id );
 
     return $query->execute();
 
   }
 }
-// $user = new User(false, 'eskaigarcia', 'yosoyeskai@gmial.com');
-// $user->setSalt('abcdef');
-// $user->setPwdHash('abcdef');
-
-// $model = new UserModel();
-// $model->insertUser( $user );
-// print_r($model->getByUserName('eskaigarcia'));

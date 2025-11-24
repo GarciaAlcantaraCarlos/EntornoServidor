@@ -17,10 +17,11 @@ class CommentModel {
 		$id = $row["ID_comment"];
 		$id_movie = $row["ID_movie"];
 		$id_user = $row["ID_user"];
+		$userDisplayName = $row["userDisplayName"];
 		$commentBody = $row["commentBody"];
 		$date = $row["date"];
 
-		$comment = new Comment( $id_user, $id_movie, $commentBody);
+		$comment = new Comment( $id_user, $id_movie, $userDisplayName, $commentBody);
 		$comment->setId( $id );
 		$comment->setDate( $date );
 
@@ -56,8 +57,33 @@ class CommentModel {
 			$connection = $this->connector->connect();
 
 			$query = $connection->prepare(
-				"SELECT * FROM movies"
+				"SELECT * FROM comments"
 			);
+			$query->execute();
+
+			$queryResult = $query->fetchAll();
+
+			$comments = [];
+
+			foreach ( $queryResult as $row ) {
+				$comments[] = $this->rowToComment( $row );
+			}
+
+		} catch (PDOException $exception) {
+			$comments = null;
+		}
+
+		return $comments;
+	}
+
+	public function getByMovie ( $movie_id ) {
+		try {
+			$connection = $this->connector->connect();
+
+			$query = $connection->prepare(
+				"SELECT * FROM comments WHERE ID_movie = :id"
+			);
+			$query->bindValue( ':id', $movie_id );
 			$query->execute();
 
 			$queryResult = $query->fetchAll();
@@ -81,12 +107,13 @@ class CommentModel {
 
       $query = $connection->prepare(
         "INSERT 
-        INTO movies(ID_user, ID_movie, commentBody, date) 
-        VALUES (:ID_user, :ID_movie, :commentBody, :date)"
+        INTO comments(ID_user, ID_movie, userDisplayName, commentBody, date) 
+        VALUES (:ID_user, :ID_movie, :userDisplayName, :commentBody, :date)"
       );
 
       $query->bindValue( ':ID_user', $comment->getUserId() );
       $query->bindValue( ':ID_movie', $comment->getMovieId() );
+      $query->bindValue( ':userDisplayName', $comment->getUserDisplayName() );
       $query->bindValue( ':commentBody', $comment->getCommentBody() );
       $query->bindValue( ':date', $comment->getDate() );
 

@@ -15,8 +15,10 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    if ($aCtrl->register($isAdmin, $userName, $password, $email)) {
-      header('Location: ../account/profile.php');
+    $success = $aCtrl->register($isAdmin, $userName, $password, $email);
+
+    if ($success) {
+      header('location: ../account/profile.php');
       exit;
     }
   }

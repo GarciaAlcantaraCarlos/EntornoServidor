@@ -6,7 +6,7 @@
   <?php require '../components/navigation.php'; ?>
   <main>
     <h1>404</h1>
-    <h3>Movie not found</h3>
+    <h3>User not found</h3>
   </main>
 </body>
 </html>

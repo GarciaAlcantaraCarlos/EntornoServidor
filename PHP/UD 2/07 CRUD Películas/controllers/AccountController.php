@@ -45,17 +45,18 @@
 
       $user = $this->model->insertUser( $user );
       if ( $user ) {
-        session_start();
         
         $_SESSION['user_id'] = $user->getId();
         $_SESSION['user_isAdmin'] = $user->getIsAdmin();
         $_SESSION['user_displayName'] = $user->getDisplayName();
         $_SESSION['user_color'] = $user->getUserColor();
 
-        header('Location: /views/account/profile.php');
       } else {
         echo "Registration failed";
+        $user = null;
       }
+
+      return $user;
     }
 
     // public function updateDetails() {}

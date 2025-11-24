@@ -31,7 +31,7 @@ CREATE TABLE ratings (
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (ID_user) REFERENCES users(ID_user) ON DELETE CASCADE,
     FOREIGN KEY (ID_movie) REFERENCES movies(ID_movie) ON DELETE CASCADE,
-    UNIQUE KEY unique_user_movie_rating (ID_user, ID_movie)
+    CONSTRAINT UNIQUE (ID_user, ID_movie)
 );
 
 -- Comments Table

@@ -32,7 +32,7 @@ class RatingModel {
 			$connection = $this->connector->connect();
 
 			$query = $connection->prepare(
-				"SELECT * FROM rating WHERE ID_rating = :id"
+				"SELECT * FROM ratings WHERE ID_rating = :id"
 			);
 			$query->bindValue( ':id', $id );
 			$query->execute();
@@ -56,7 +56,7 @@ class RatingModel {
 			$connection = $this->connector->connect();
 
 			$query = $connection->prepare(
-				"SELECT * FROM rating"
+				"SELECT * FROM ratings"
 			);
 			$query->execute();
 
@@ -81,7 +81,7 @@ class RatingModel {
 
       $query = $connection->prepare(
         "INSERT 
-        INTO movies(ID_user, ID_movie, value, date) 
+        INTO ratings(ID_user, ID_movie, value, date) 
         VALUES (:ID_user, :ID_movie, :value, :date)"
       );
 
@@ -105,7 +105,7 @@ class RatingModel {
     $connection = $this->connector->connect();
 
     $query = $connection->prepare(
-      "UPDATE comments
+      "UPDATE ratings
 			SET ID_user = :ID_user, ID_movie = :ID_movie, value = :value, date = :date
       WHERE ID_comment = :id"
     );
@@ -123,7 +123,7 @@ class RatingModel {
   public function removeById ( $id ) {
     $connection = $this->connector->connect();
 
-    $query = $connection->prepare( "DELETE FROM rating WHERE ID_rating = :id" );
+    $query = $connection->prepare( "DELETE FROM ratings WHERE ID_rating = :id" );
 
     $query->bindValue( ':id', $id );
 
