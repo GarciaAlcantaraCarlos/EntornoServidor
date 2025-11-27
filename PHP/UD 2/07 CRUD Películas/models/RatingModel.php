@@ -75,7 +75,7 @@ class RatingModel {
 		return $ratings;
 	}
 
-	public function insertComment( $rating ) {
+	public function insertRating( $rating ) {
     try {
       $connection = $this->connector->connect();
 
