@@ -37,7 +37,7 @@ Route::post('/registrar-usuario', function (Request $request) {
 
     try {
         $respuesta = $controlador->insertarUsuario($request);
-        $respuesta = view('detalle-usuario', ['respuesta' => $respuesta]);
+        $respuesta = redirect("/usuario/$respuesta[id]");
     } catch (ValidationException $e) {
         $respuesta = $e->errors();
     }
@@ -51,5 +51,5 @@ Route::get('/usuario/{id}', function ($id) {
 
     $respuesta = $controlador->obtenerUsuario($id);
 
-    return view('detalle-usuario', ['id' => $respuesta]);
+    return view('detalle-usuario', ['respuesta' => $respuesta]);
 });
