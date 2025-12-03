@@ -50,4 +50,8 @@ class UsuarioController extends Controller
         return $usuario;
 
     }
+
+    public function obtenerUsuario($id) {
+        return Usuario::find($id);
+    }
 }

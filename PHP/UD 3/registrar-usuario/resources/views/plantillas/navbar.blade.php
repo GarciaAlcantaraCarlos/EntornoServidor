@@ -1,6 +1,8 @@
 <nav>
     <ul>
-        <li><a href="/hola"> HOLA </a></li>
-        <li><a href="/edad"> EDAD </a></li>
+        <a href="/hola"> HOLA</a> | 
+        <a href="/edad"> EDAD</a> | 
+        <a href="/registrar-usuario"> CREAR USUARIO</a>
     </ul>
 </nav>
+<hr>

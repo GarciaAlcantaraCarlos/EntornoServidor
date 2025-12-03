@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route; // Importamos la clase Route
+use App\Http\Controllers\UsuarioController;
+use App\Models\Usuario;
+use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Calculadora;
+use Illuminate\Http\Request;
 
 Route::get('/hola/{nombre?}', function ($nombre = 'Mundo') {
     return view('hola', ['nombre' => $nombre]);
@@ -19,4 +23,33 @@ Route::get('/numeros/{size}', function ($size) {
         'numeros' => $numeros,
         'size' => $size
     ]);
+});
+
+// =============================================
+
+Route::get('/registrar-usuario', function () {
+    return view('registrar-usuario');
+});
+
+Route::post('/registrar-usuario', function (Request $request) {
+
+    $controlador = new UsuarioController();
+
+    try {
+        $respuesta = $controlador->insertarUsuario($request);
+        $respuesta = view('detalle-usuario', ['respuesta' => $respuesta]);
+    } catch (ValidationException $e) {
+        $respuesta = $e->errors();
+    }
+
+    return $respuesta;
+});
+
+Route::get('/usuario/{id}', function ($id) {
+    
+    $controlador = new UsuarioController();
+
+    $respuesta = $controlador->obtenerUsuario($id);
+
+    return view('detalle-usuario', ['id' => $respuesta]);
 });
