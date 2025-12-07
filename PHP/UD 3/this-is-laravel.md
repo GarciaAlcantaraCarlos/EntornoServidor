@@ -294,11 +294,16 @@ return new class extends Migration {
 };
 ```
 
-When connecting tables through foreign keys and relations, the migration files must use `$table->foreign`. This equally applies to 1:1, 1:N, M:N relations,
+When connecting tables through foreign keys and relations, the migration files must use `$table->foreign` or `$table->foreignId()`.
+When using the later one, it will be unnecessary to use the references or on methods, because they will be inferred, and it will also be unnecessary to previously declare a `$table->unsignedBigInteger('col_id')`, because it will be created automatically. The thing to consider here is that this shorthand will only work when our tables and columns are following La ravel's naming conventions.
+Both of these equally applies to 1:1, 1:N, M:N relations.
 ```php
-  $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+  $table->foreign('user_id')->references('id')->on('users')?->onDelete('cascade');
+  $table->foreignId('user_id')?->onDelete('cascade')
 ```
 
+The important element to consider here is when to create fields for the foreign keys and when not. In order to decide this we will follow the conventions of normal relational databases, meaning for 1:N relations we will include a field in the one table but not in the many one, while for M:N relationships we will create a new linking table with both foreign keys.
+This might be confusing since the Models and Migrations don't follow the same conventions. In the Models every value is declared, in a similar way to how Spring Boot would do, but in the Migrations we only declare the keys corresponding to that column. Including the FKs of a relationship on both sides of it will create a dependency loop and the tables will fail to be created.
 
 > You may execute migrations through the command line with `php artisan migrate` or undo them with `php artisan rollback`, you may include the name of the exact migration you wish to perform to only trigger that one instead of all others.
 
