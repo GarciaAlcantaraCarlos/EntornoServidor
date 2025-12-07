@@ -219,7 +219,7 @@ Location: `/app/Models/`
 
 Models are what connect our OOP code to the relational database. We use `protected $fillable = [...]` to create an array of columns that Laravel will use to set up said columns in our database.
 
-Models must be created through the command line with `php artisan make:modeñ {modelName} {-?mfs}`. This command has three optional flags standing for Migration, Factory and Seeder, which may be automatically created along with the model. Otherwise, they'll need need to be independently created later with commands such as `php artisan make:migration {migrationName}`.
+Models must be created through the command line with `php artisan make:model {modelName} {-?mfs}`. This command has three optional flags standing for Migration, Factory and Seeder, which may be automatically created along with the model. Otherwise, they'll need need to be independently created later with commands such as `php artisan make:migration {migrationName}`.
 
 A simple model follows, but Laravel creates a more complete example as it sets up the User class by default in `/app/Models/User.php`:
 ```php
