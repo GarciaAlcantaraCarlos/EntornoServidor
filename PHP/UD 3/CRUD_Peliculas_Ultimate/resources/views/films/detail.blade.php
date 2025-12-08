@@ -8,7 +8,11 @@
         <div class="card-header">Films</div>
 
         <div class="card-body">
-          Film details
+          Poster: {{ $film->poster }} <br>
+          Title: {{ $film->title }}<br>
+          Description: {{ $film->description }} 
+          Release: {{ $film->releaseYear }} <br>
+          Creation: {{ $film->created_at }} <br>
         </div>
       </div>
     </div>

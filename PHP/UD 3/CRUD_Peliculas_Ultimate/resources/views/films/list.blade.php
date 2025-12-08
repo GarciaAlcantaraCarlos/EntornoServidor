@@ -8,7 +8,22 @@
         <div class="card-header">Films</div>
 
         <div class="card-body">
-          Film list
+          @foreach ( $films as $film )
+          Poster: {{ $film->poster }} <br>
+            <a href="/film/detail/{{ $film->id }}">{{ $film->title }}</a> <br>
+            Description: {{ $film->description }} 
+            {{-- Release: {{ $film->releaseYear }} <br>
+            Creation: {{ $film->created_at }} <br> --}}
+            <hr>
+          @endforeach
+        </div>
+
+        <div class="card-footer d-flex justify-content-center align-center">
+          @if ($page > 1)
+            <a href="/{{ $page - 1 }}"><button class="btn btn-primary mx-5">&lt;- Prev</button></a>
+          @endif
+          <span class="d-flex align-self-center">Page {{ $page }}</span>
+          <a href="/{{ $page + 1 }}"><button class="btn btn-primary mx-5">Next -&gt;</button></a>
         </div>
       </div>
     </div>

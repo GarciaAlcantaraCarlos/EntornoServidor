@@ -31,8 +31,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item"><a class="nav-link" href="/">All films</a></li>
-                        @if (Auth::user()->role == 'admin')
-                            <li class="nav-item"><a class="nav-link" href="/">Create films</a></li>                    
+                        {{-- {{ Auth::user() }} --}}
+                        @if (Auth::user()?->role == 'admin')
+                            <li class="nav-item"><a class="nav-link" href="/film/create">Create films</a></li>                    
                         @endif
                     </ul>
 

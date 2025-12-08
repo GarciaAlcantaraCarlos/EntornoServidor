@@ -2,10 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
-Route::get('/', function () {
-    return view('films/list');
-})->middleware('auth');
+use App\Models\Film;
+use Illuminate\Http\Request;
 
 
 # AUTH
@@ -17,11 +15,22 @@ Auth::routes();
 
 
 # CONTENT
+Route::get('/{page?}', function ( $page = 1 ) {
+    $films = Film::paginate(10, '*', 'page', (int) $page);
+    return view('films/list', [ 'films' => $films, 'page' => (int) $page ]);
+})->middleware('auth');
+
 Route::get('/film/detail/{id}', function ( $id ) {
-    return view('films/detail', [ 'id' => $id ]);
+    $film = Film::find($id);
+    return view('films/detail', [ 'film' => $film ]);
 })->middleware('auth');
 
 Route::get('/film/create', function () {
+    return view('films/create');
+})->middleware('admin');
+
+Route::post('/film/create', function (Request $request) {
+    
     return view('films/create');
 })->middleware('admin');
 
