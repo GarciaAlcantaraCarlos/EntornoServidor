@@ -5,7 +5,8 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <form action="">
+        <form action="" method="POST">
+          @csrf
           <div class="card-header">New film</div>
 
           <div class="card-body">
@@ -26,14 +27,14 @@
 
             <div>
               <p class="fs-6">Genre</p>
-              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genre" value="1">Action</label>
-              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genre" value="2">Comedy</label>
-              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genre" value="3">Drama</label>
-              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genre" value="4">Horror</label>
-              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genre" value="5">Sci-Fi</label>
-              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genre" value="6">Fantasy</label>
-              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genre" value="7">Documentary</label>
-              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genre" value="8">Romance</label>
+              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genres[]" value="1">Action</label>
+              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genres[]" value="2">Comedy</label>
+              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genres[]" value="3">Drama</label>
+              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genres[]" value="4">Horror</label>
+              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genres[]" value="5">Sci-Fi</label>
+              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genres[]" value="6">Fantasy</label>
+              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genres[]" value="7">Documentary</label>
+              <label class="form-check-label me-3"><input class="form-check-input" type="checkbox" name="genres[]" value="8">Romance</label>
             </div>
 
             <div class="mb-2">

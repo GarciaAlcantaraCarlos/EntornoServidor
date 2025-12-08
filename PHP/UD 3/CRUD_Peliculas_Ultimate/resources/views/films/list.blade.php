@@ -9,11 +9,9 @@
 
         <div class="card-body">
           @foreach ( $films as $film )
-          Poster: {{ $film->poster }} <br>
-            <a href="/film/detail/{{ $film->id }}">{{ $film->title }}</a> <br>
+            <img class="w-25 mb-1" src="{{ $film->poster }}"><br>
+            <a class="fs-4" href="/film/detail/{{ $film->id }}">{{ $film->title }}</a> <br>
             Description: {{ $film->description }} 
-            {{-- Release: {{ $film->releaseYear }} <br>
-            Creation: {{ $film->created_at }} <br> --}}
             <hr>
           @endforeach
         </div>
