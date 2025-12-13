@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class Film extends Model
 {
+
+  // protected $with = [ 'generos' ];
   protected $fillable = [
     'poster',
     'title',
